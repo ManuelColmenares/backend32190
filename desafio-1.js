@@ -1,9 +1,9 @@
 class Usuario {
-    constructor(nombre, apellido,) {
+    constructor(nombre, apellido, libros, mascotas) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.libros = [];
-        this.mascotas = [];
+        this.libros = libros;
+        this.mascotas = mascotas;
     }
 
         getFullName(){ // Retorna nombre completo del Usuario.
@@ -26,13 +26,17 @@ class Usuario {
 }
 
 //  Se crea un Usuario llamado persona
-let persona = new Usuario("Carlos", "Santana"); 
+let persona = new Usuario(
+    "Carlos", 
+    "Santana", 
+    [{titulo: 'Padre Rico Padre Pobre', autor: 'Robert Kiyosaki'}],
+    ["Gato", "Perro"],
+    
+); 
 
 console.log(persona.getFullName()); // Nombre Completo: Carlos Santana
 
-// Agregamos las mascotas de la persona 
-persona.addMascotas('Gato');
-persona.addMascotas('Perro');
+// Agregamos una mascota a la persona 
 persona.addMascotas('Loro')
 
 console.log(persona.countMascotas()); // Delvulve la cantidad de mascotas que tiene persona (3)
@@ -42,17 +46,22 @@ persona.addBook('Eloquent JavaScript', 'Marijn Haverbeke');
 
 console.log(persona.getBookNames()); //Devuelve ['Eloquent JavaScript']
 
+console.log(); // Omitir este console.log Lo cree para hacer un salto de line en consola
+
 // Se crea un segundo Usuario llamado persona2
-let persona2 = new Usuario("María", "Rodriguez");
+let persona2 = new Usuario(
+    'María', 
+    'Rodriguez',
+    [{titulo: 'Aprendiendo JavaScript', autor: 'Carlos Azaustre'}],
+    ["Pez"],
+);
 
 console.log(persona2.getFullName()); // Nombre Completo: María Rodriguez
 
-// Agregamos las mascotas de la persona 2
-persona2.addMascotas('Pez')
+// Agregamos una mascota de la persona 2
 persona2.addMascotas('Mono')
 
-// Agregamos dos libro a la persona 2
-persona2.addBook('Padre Rico Padre Pobre', 'Robert Kiyosaki');
+// Agregamos un libro a persona 2
 persona2.addBook('Sálvese Quien Pueda', 'Andrés Oppenheimer');
 
 
