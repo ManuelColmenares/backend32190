@@ -40,7 +40,7 @@ class Contenedor {
              const productRandom = data.sort(() => Math.random() -0.5)
              return productRandom[0]
         } catch (error) {
-            
+            console.log(`Error al obtener producto aleatorio ${error}`);        
         }
     }
 
