@@ -1,0 +1,20 @@
+ [
+    {
+    "title": "Calculadora", 
+    "precio": 1040, 
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_711833-MLA50714584395_072022-W.webp",
+    "id": 1
+    },
+    {
+    "title": "Escuadra", 
+    "precio": 1200, 
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_676195-MLA43613128249_092020-V.webp",
+    "id": 2
+   },
+   {
+    "title": "Globo Terráqueo", 
+    "precio": 5000, 
+    "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_614411-MLA51456808784_092022-O.webp",
+    "id": 3
+   }
+ ]
