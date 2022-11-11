@@ -6,13 +6,13 @@ const app = express()
 const PORT = 8008
 
 app.get('/productos',  async (req, res) => {
-    const getProducts = await myContenedor.getData()
-    res.send(getProducts)
+    const showProducts = await myContenedor.getData()
+    res.send(showProducts)
 
 })
 app.get('/productoRandom', async (req, res) => {
-    const getProduct =  await myContenedor.proudctRandom()
-    res.send(getProduct)
+    const randomProduct =  await myContenedor.getRandomProduct()
+    res.send(randomProduct)
 })
 
 class Contenedor {
@@ -20,25 +20,22 @@ class Contenedor {
         this.fileName = fileName
     }
 
-   async getData() {  // Devuelve los pro
-        let data = null
+   async getData() { 
         try {
-            const readData = await fs.readFile(`./${this.fileName}`, 'utf-8')
-            const data = JSON.parse(readData)
-            console.log(data);
-            return data
+            const showData = await fs.readFile(`./${this.fileName}`, 'utf-8')
+            return showData
         } catch (error) {
             console.log(`Error al obtener la data: ${error}`);
         }
         
     }
 
-    async proudctRandom () {
+    async getRandomProduct () {
         try {
-            const readData = await fs.readFile(`./${this.fileName}`, 'utf-8')
-            const data = JSON.parse(readData)
-             const productRandom = data.sort(() => Math.random() -0.5)
-             return productRandom[0]
+            const showData = await fs.readFile(`./${this.fileName}`, 'utf-8')
+            const data = JSON.parse(showData)
+             const randomProduct = data.sort(() => Math.random() -0.5)
+             return randomProduct[0]
         } catch (error) {
             console.log(`Error al obtener producto aleatorio ${error}`);        
         }
@@ -47,8 +44,10 @@ class Contenedor {
 }
 
 const myContenedor = new Contenedor('productos.txt')
-console.log(myContenedor.getData()); 
+
 
 const server = app.listen(PORT, () => {
     console.log(`Escuchando en el puerto ${PORT}`);
 })
+
+server.on('error', error => console.log(`Se ha producido un error ${error}`))
