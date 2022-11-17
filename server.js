@@ -1,49 +1,15 @@
 const express = require('express')  
-const { promises: fs} = require('fs')
 
 const app = express()
 
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use('/static', express.static(__dirname + '/public'))
+
 const PORT = 8008
 
-app.get('/productos',  async (req, res) => {
-    const showProducts = await myContenedor.getData()
-    res.send(showProducts)
-
-})
-app.get('/productoRandom', async (req, res) => {
-    const randomProduct =  await myContenedor.getRandomProduct()
-    res.send(randomProduct)
-})
-
-class Contenedor {
-    constructor (fileName){
-        this.fileName = fileName
-    }
-
-   async getData() { 
-        try {
-            const showData = await fs.readFile(`./${this.fileName}`, 'utf-8')
-            return showData
-        } catch (error) {
-            console.log(`Error al obtener la data: ${error}`);
-        }
-        
-    }
-
-    async getRandomProduct () {
-        try {
-            const showData = await fs.readFile(`./${this.fileName}`, 'utf-8')
-            const data = JSON.parse(showData)
-             const randomProduct = data.sort(() => Math.random() -0.5)
-             return randomProduct[0]
-        } catch (error) {
-            console.log(`Error al obtener producto aleatorio ${error}`);        
-        }
-    }
-
-}
-
-const myContenedor = new Contenedor('productos.txt')
+// Routes
+app.use('/api/productos',require('./routes/productos'));
 
 
 const server = app.listen(PORT, () => {
