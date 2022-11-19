@@ -1,10 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 
-
 const products = []
-
-   
 
 router.get('/', (req, res) => { // Devuelve todos los productos.
     res.json(products)
@@ -40,15 +37,22 @@ router.put('/:id', (req, res,) => {  // Recibe y actualiza un producto según su
     
     const product = products.find(c => c.id === parseInt(req.params.id));
     const { title, precio, thumbnail} = req.body;
+    const error = {error: 'producto no encontrado'};
 
-    //const error = {error: 'producto no encontrado'};
-    if (!product) return res.json('Por favor ingrese un id valido');
-    
-    product.title = title
-    product.precio = precio
-    product.thumbnail = thumbnail
-
-    res.json(product);
+    if (!product) { 
+        return res.json(error);
+    } else {  
+        if (title){
+            product.title = title
+        }
+        if (precio){
+            product.precio = precio
+        }
+        if (thumbnail){
+            product.thumbnail = thumbnail
+        }
+    }
+    res.json(products);
 
  });
  
