@@ -1,0 +1,19 @@
+h2(style="color:#dc143c;") Historial
+
+if products.length > 0
+    div(class="table-responsive")
+        table(class="table table-dark")
+            tr(style="color: yellow;")
+                th Nombre
+                th Precio
+                th Foto
+
+            for product of products 
+                tr
+                    td= product.nombre
+                    td= product.precio
+                    td 
+                        img(src="product.foto", alt= "product.nombre")
+
+else 
+    h3(class="alert alert-danger") No se encontraron datos
