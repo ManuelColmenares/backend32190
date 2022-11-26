@@ -1,5 +1,4 @@
 const express = require('express')
-const { Router } = express
 const app = express()
 
 const products = []
@@ -11,12 +10,16 @@ app.set('view engine', 'ejs')
 
 
 app.get('/', (req, res) => { // Devuelve los productos 
-    res.render('index', {products})
+    res.render('formulario', {products})
 })
 
 app.post('/productos', (req, res) => { // Recibe y agrega un producto al historial
     products.push(req.body)
     res.redirect('/')
+})
+
+app.get('/productos', (req, res) => { // Devuelve los productos 
+    res.render('historial', {products})
 })
 
 

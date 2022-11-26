@@ -1,25 +1,27 @@
 const express = require('express')
-const { Router } = express
 const app = express()
+const handlebars = require('express-handlebars')
 
 const products = []
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
-app.set('view engine', 'pug')
+app.engine('handlebars', handlebars.engine())
 
-app.get('/', (req, res) => {  
-    res.render('formulario')
+app.set('views', './views')
+app.set('view engine', 'handlebars')
+
+app.get('/', (req, res) => { // Devuelve los productos 
+    res.render('formulario', {products})
 })
-
 
 app.post('/productos', (req, res) => { // Recibe y agrega un producto al historial
     products.push(req.body)
     res.redirect('/')
 })
 
-app.get('/productos', (req, res) => {  
+app.get('/productos', (req, res) => { // Devuelve los productos 
     res.render('historial', {products})
 })
 
