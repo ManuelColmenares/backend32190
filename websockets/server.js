@@ -4,11 +4,11 @@ const { Server: HttpServer } = require('http')
 const { Server: IOServer } = require('socket.io')
 
 const products = [
-    /* {
+    {
         nombre: 'Calculadora',
         precio: 1040,
         foto: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-64.png"
-    } */
+    }
 ]
 
 const app = express()
@@ -47,11 +47,11 @@ io.on('connection', socket => {
     })
 })
 
-/* app.get('/', (req,res) => {
+app.get('/', (req,res) => {
     res.render("main", products)
-}) */
+})
 
-const PORT = 8080
+const PORT = 3000
 
 httpServer.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`)
