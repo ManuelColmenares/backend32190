@@ -1,0 +1,21 @@
+{{!-- main.hbs --}}
+<div class="container mt-5 d-flex">
+        {{!-- Form & Products --}}
+    <div class="jumbotron shadow p-3 mb-5 bg-light rounded  col-8">
+        {{>formulario}}
+        <br>
+        <div id="productsContainer"></div>
+    </div>
+        {{!-- chat --}}
+    <div class="jumbotron shadow mb-5 bg-light rounded ms-3 col-4">
+        <div class="rounded-top">
+            <h4 class="text-bg-dark p-3">Web Chat</h4>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="./socket.io/socket.io.js"></script>
+<script src="./index.js"></script>
