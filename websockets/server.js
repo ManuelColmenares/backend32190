@@ -3,13 +3,8 @@ const handlebars = require('express-handlebars')
 const { Server: HttpServer } = require('http')
 const { Server: IOServer } = require('socket.io')
 
-const products = [
-    {
-        nombre: 'Calculadora',
-        precio: 1040,
-        foto: "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-64.png"
-    }
-]
+const products = []
+const mensajes = []
 
 const app = express()
 const httpServer = HttpServer(app)
@@ -38,6 +33,7 @@ app.set('views', __dirname + '/views')
 io.on('connection', socket => {
     console.log('Un cliente se ha conectado');
 
+    //PRODUCTOS
     socket.emit('products', products)
 
     socket.on('new-product', data =>{
@@ -45,12 +41,24 @@ io.on('connection', socket => {
         
         io.sockets.emit('products', products)
     })
+
+    //CHAT
+    socket.emit('messages', mensajes)
+
+    socket.on('new-message', data => {
+        mensajes.push(data)
+
+        io.sockets.emit('messages', mensajes)
+    })
+
 })
 
 app.get('/', (req,res) => {
-    res.render("main", products)
+    res.render("main")
 })
 
+
+//Start Server
 const PORT = 3000
 
 httpServer.listen(PORT, () => {
