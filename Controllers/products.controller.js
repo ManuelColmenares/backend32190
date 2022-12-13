@@ -1,20 +1,19 @@
-const { Router } = require('express');
-const router = Router();
-
+const controller = {}
 const products = []
 
-router.get('/', (req, res) => { // Devuelve todos los productos.
+controller.getProducts = (req, res) => { // Devuelve todos los productos.
     res.json(products)
-});
+}
 
- router.get('/:id', (req, res) => {  // Devuelve un producto según su id. 
+controller.getProduct = (req, res) => {  // Devuelve un producto según su id. 
     const product = products.find(c => c.id === parseInt(req.params.id));
     const error = {error: 'producto no encontrado'};
     if (!product) return res.send(error);
     else res.json(product);
- });
+ }
 
- router.post('/', (req, res) => {  // Recibe y agrega un producto, y lo devulve con su id asignado
+
+ controller.createProduct = (req, res) => {  // Recibe y agrega un producto, y lo devulve con su id asignado
 
     const getId = (arr) => { 
         if (arr.length == 0) return 1;
@@ -31,9 +30,9 @@ router.get('/', (req, res) => { // Devuelve todos los productos.
     };
     products.push(product);
     res.json(products);
-});
+}
 
-router.put('/:id', (req, res,) => {  // Recibe y actualiza un producto según su id. 
+controller.updateProduct = (req, res,) => {  // Recibe y actualiza un producto según su id. 
     
     const product = products.find(c => c.id === parseInt(req.params.id));
     const { title, precio, thumbnail} = req.body;
@@ -54,9 +53,9 @@ router.put('/:id', (req, res,) => {  // Recibe y actualiza un producto según su
     }
     res.json(products);
 
- });
- 
-router.delete('/:id', (req, res) => {  // Elimina un producto según su id. 
+ }
+
+ controller.deleteProduct = (req, res) => {  // Elimina un producto según su id. 
     const product = products.find(c => c.id === parseInt(req.params.id));
     const error = {error: 'producto no encontrado'};
     if (!product) return res.json(error);
@@ -66,6 +65,6 @@ router.delete('/:id', (req, res) => {  // Elimina un producto según su id.
     
     res.json(product);
 
- });
+ }
 
-module.exports = router;
+module.exports = controller

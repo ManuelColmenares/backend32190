@@ -1,16 +1,17 @@
 const express = require('express')  
-
 const app = express()
 
+//middleware
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+
 app.use('/static', express.static(__dirname + '/public'))
 
-const PORT = 8008
-
 // Routes
-app.use('/api/productos',require('./routes/productos'));
+app.use('/api/productos',require('./routes/products.routes'));
 
+//Start server  
+const PORT = process.env.PORT || 8080
 
 const server = app.listen(PORT, () => {
     console.log(`Escuchando en el puerto ${PORT}`);
